@@ -5,7 +5,7 @@ struct RoutinesView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var tasks: [RoutineTask]
     
-    @State private var selectedMode = "Full Day"
+    @AppStorage("currentDayMode") private var selectedMode = "Full Day"
     let modes = ["Full Day", "Busy Day", "Low Energy Day", "Reset Day"]
     
     let categoryOrder = ["Morning Routine", "Skincare Routine", "Body Care", "Hair Routine", "Growth Block", "Creative Block", "Fitness Block", "Night Routine"]
