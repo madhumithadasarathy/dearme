@@ -44,8 +44,15 @@ struct MainTabView: View {
                     Image(systemName: "heart.fill")
                     Text("Wellness")
                 }
+            
+            RewardsView()
+                .tabItem {
+                    Image(systemName: "star.fill")
+                    Text("Rewards")
+                }
         }
         .accentColor(Color.Theme.dustyRose)
+
     }
 }
 

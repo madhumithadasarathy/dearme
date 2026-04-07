@@ -109,10 +109,16 @@ struct SugarLogView: View {
         } else {
             let newEntry = SugarEntry(date: inputDate, timeSlot: inputSlot, glucoseValue: value, notes: notesInput.isEmpty ? nil : notesInput)
             modelContext.insert(newEntry)
+            
+            let dateStr = formatter.string(from: inputDate)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                RewardEngine.shared.evaluateSugarBonus(context: modelContext, dateString: dateStr)
+            }
         }
         isEnteringData = false
     }
 }
+
 
 #Preview {
     SugarLogView()

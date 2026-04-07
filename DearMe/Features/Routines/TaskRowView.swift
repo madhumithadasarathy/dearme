@@ -71,6 +71,9 @@ struct TaskRowView: View {
         if let completion = completion {
             completion.isCompleted.toggle()
             completion.completionTimestamp = completion.isCompleted ? Date() : nil
+            
+            let modifier = completion.isCompleted ? task.pointsValue : -task.pointsValue
+            RewardEngine.shared.addPoints(context: modelContext, amount: modifier)
         } else {
             let newCompletion = RoutineCompletion(date: Date(), isCompleted: true, completionTimestamp: Date())
             newCompletion.task = task
@@ -79,6 +82,8 @@ struct TaskRowView: View {
                 task.completions = []
             }
             task.completions?.append(newCompletion)
+            
+            RewardEngine.shared.addPoints(context: modelContext, amount: task.pointsValue)
         }
     }
 }
