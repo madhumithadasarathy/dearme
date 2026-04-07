@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
+    @Environment(\.modelContext) private var modelContext
     @Query private var tasks: [RoutineTask]
     
     var todayDateString: String {
@@ -86,6 +87,13 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
+        }
+        .onAppear {
+            NotificationManager.shared.requestPermission { granted in
+                if granted {
+                    NotificationManager.shared.scheduleAllNotifications(context: modelContext)
+                }
+            }
         }
     }
 }
