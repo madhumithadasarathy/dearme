@@ -65,3 +65,8 @@ struct SugarLogView: View {
         modelContext.delete(entry)
     }
 }
+
+#Preview {
+    SugarLogView()
+        .modelContainer(for: SugarEntry.self, inMemory: true)
+}

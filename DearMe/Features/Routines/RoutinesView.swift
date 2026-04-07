@@ -65,3 +65,8 @@ struct RoutinesView: View {
         modelContext.delete(task)
     }
 }
+
+#Preview {
+    RoutinesView()
+        .modelContainer(for: RoutineTask.self, inMemory: true)
+}

@@ -48,3 +48,7 @@ struct MainTabView: View {
         .accentColor(Color.Theme.dustyRose)
     }
 }
+
+#Preview {
+    MainTabView()
+}
