@@ -3,10 +3,17 @@ import SwiftData
 
 @main
 struct DearMeApp: App {
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
+    
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-                .preferredColorScheme(.light) // Soft, feminine aesthetics
+            if hasSeenOnboarding {
+                MainTabView()
+                    .preferredColorScheme(.light)
+            } else {
+                OnboardingView()
+                    .preferredColorScheme(.light)
+            }
         }
         .modelContainer(for: [
             UserProfile.self,
@@ -16,7 +23,8 @@ struct DearMeApp: App {
             JournalEntry.self,
             PeriodTracking.self,
             RewardsProgress.self,
-            MoodLog.self
+            MoodLog.self,
+            ChatMessage.self
         ])
     }
 }
